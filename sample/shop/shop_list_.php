@@ -45,19 +45,14 @@ $dbh=null;
 print '商品一覧<br /><br />';
 
 
-
 ?>
-
-
 
 <form method="post" action="">
 キーワード<br />
-<input type="text" name="keyword" ><br />
+<input type="text" name="code"><br />
 <br />
 <input type="submit" value="検索">
 </form>
-
-
 
 
 <?php
@@ -67,10 +62,9 @@ if(isset($_POST['keyword'])){
   $key=$_POST['keyword'];
 }
 if($key!==''){
-  print $key.'が含まれる商品';
+ print $key.'が含まれる商品';
   print'<br/>';
-}
-
+} 
 
 
 while(true)
@@ -80,15 +74,11 @@ while(true)
 	{
 		break;
 	}
-	
-	if(($key==='')||(strpos($rec['name'],$key)!==false)){
-	
 	print '<a href="shop_product.php?procode='.$rec['code'].'">';
 	print $rec['name'].'---';
 	print $rec['price'].'円';
 	print '</a>';
 	print '<br />';
-	}
 }
 
 print '<br />';

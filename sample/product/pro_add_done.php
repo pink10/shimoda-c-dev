@@ -33,6 +33,7 @@ require_once('../common/common.php');
 $post=sanitize($_POST);
 $pro_name=$post['name'];
 $pro_price=$post['price'];
+$pro_info=$post['info'];
 $pro_gazou_name=$post['gazou_name'];
 
 $dsn='mysql:dbname=shop;host=localhost;charset=utf8';
@@ -41,10 +42,11 @@ $password='';
 $dbh=new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$sql='INSERT INTO mst_product(name,price,gazou) VALUES (?,?,?)';
+$sql='INSERT INTO mst_product(name,price,info,gazou) VALUES (?,?,?,?)';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_name;
 $data[]=$pro_price;
+$data[]=$pro_info;
 $data[]=$pro_gazou_name;
 $stmt->execute($data);
 
