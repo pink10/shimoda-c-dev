@@ -87,7 +87,7 @@ if($type!==''){
 
 while(true)
 {
-    $rec=$stmt->fetch(PDO::FETCH_ASSOC)
+    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
         $type2=$rec['type'];
         $size2=$rec['size'];
         $color2=$rec['color'];
@@ -114,6 +114,7 @@ while(true)
         print '</a>';
         print '<br />';
     }
+}
 ?>
 <form method="post" action="">
 キーワード<br />
