@@ -37,7 +37,7 @@ $user='root';
 $password='';
 $dbh=new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
+//商品情報
 $sql='SELECT name,price,gazou FROM mst_product WHERE code=?';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_code;
@@ -47,6 +47,19 @@ $rec=$stmt->fetch(PDO::FETCH_ASSOC);
 $pro_name=$rec['name'];
 $pro_price=$rec['price'];
 $pro_gazou_name=$rec['gazou'];
+$pro_info=$rec['info'];
+//在庫情報
+$sql='SELECT stock FROME dat_stock WHERE code_product=?';
+$stmt2=$dbh->prepare($sql);
+$data2[]=$pro_code;
+$stmt2->execute($data2);
+$rec=$stmt2->fetch(PDO::FETCH_ASSOC);
+$pro_stock=$rec['stock'];
+//商品レビュー
+$sql='SELECT review FROME dat_review WHERE code_product=?';
+$stmt3=$dbh->prepare($sql);
+$data3[]=$pro_code;
+$stmt3->execute($data2);
 
 $dbh=null;
 
@@ -80,12 +93,38 @@ catch(Exception $e)
 価格<br />
 <?php print $pro_price; ?>円
 <br />
+商品説明<br />
+<?php print $pro_info; ?>
+<br />
+在庫数<br />
+<?php print $pro_stock; ?>
+<br />
 <?php print $disp_gazou; ?>
 <br />
 <br />
 <form>
 <input type="button" onclick="history.back()" value="戻る">
 </form>
-
+<br />
+商品レビュー--------------------<br />
+<frome method="post" action="shop_review_check.php"
+<br />
+商品レビューを入力してください。<br />
+<input type="text" name="review" style="width:500px"><br />
+<input type="hidden" name="code" value="<?php echo $pro_code;?>">
+<input type="submit" value="OK"
+</form>
+<?php
+while (true)
+{
+    $rec=$stmt3->fetch(PDO::FETCH_ASSOC);
+    if($rec==false)
+    {
+        break;
+    }
+    print $rec['review'];
+        print '<br />';
+}        
+?>    
 </body>
 </html>
