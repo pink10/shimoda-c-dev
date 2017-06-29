@@ -30,35 +30,20 @@ else
 try
 {
 
-$dsn='mysql:dbname=shop;host=localhost;charset=utf8';
-$user='root';
-$password='';
-$dbh=new PDO($dsn,$user,$password);
-$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$sql='SELECT code,name,price FROM mst_product WHERE 1';
-$stmt=$dbh->prepare($sql);
-$stmt->execute();
-
-$dbh=null;
 
 print '商品一覧<br /><br />';
 
-?>php
-require_once('../common/common/common.php');
+require_once('../common/common_1.php');
 ?>
 
 キーワードを選んでください．<br />
 <from method="post"action="">
 種類
-<?php pulldown_type(); ?>
+<?php pulldown_type();?>
 サイズ
-<?php pulldown_siza(); ?>
-色
-<?php pulldown_color(); ?>
-<br />
-<input type="submit" value="絞り込み">
-</from>
+<?php pulldown_size();?>
+
 
 <?php
 
@@ -74,23 +59,33 @@ if($keyword!==''){
 //固定キーワード
 $type='';
 $siza='';
-$color='';
 if(isset($_POST['type'])){
     $type=$_POST['type'];
-    $size=$_POST['size'];
-    $color=$_POST['color'];           
+    $size=$_POST['size'];         
 }
 if($type!==''){
-    print $type.','.$size.','.$color.'に一致する商品';
+    print $type.','.$size.',に一致する商品';
     print '<br />';        
 }
+
+$dsn='mysql:dbname=shop;host=localhost;charset=utf8';
+$user='root';
+$password='';
+$dbh=new PDO($dsn,$user,$password);
+$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+$sql='SELECT code,name,price,type,size FROM mst_product WHERE 1';
+$stmt=$dbh->prepare($sql);
+$stmt->execute();
+
+$dbh=null;
+
 
 while(true)
 {
     $rec=$stmt->fetch(PDO::FETCH_ASSOC);
         $type2=$rec['type'];
         $size2=$rec['size'];
-        $color2=$rec['color'];
     if($rec==false)
     {
         break;
@@ -103,7 +98,7 @@ while(true)
     else if (($keyword==='')&&(strpos($rec['name'],$keyword)!==false)){
         $disp=1;
     }
-    else if((keyword==='')&&((strpos($type2,$type)!==false)&&(strpos($size2,$size)!==false)&&(strpos($color2,$color)!==false))){
+    else if((keyword==='')&&((strpos($type2,$type)!==false)&&(strpos($size2,$size)!==false))){
          $disp=1;
     }
     
