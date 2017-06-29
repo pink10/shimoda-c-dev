@@ -60,7 +60,7 @@ require_once('../common/common.php');
     
     
 キーワードを選んでください．<br />
-<from method="post"action="">
+<form method="post"action="">
 種類
 <?php pulldown_type();?>
 サイズ
@@ -110,7 +110,7 @@ while(true)
     if(($keyword==='')&&($type==='')){
         $disp=1;
     }
-    else if (($keyword==='')&&(strpos($rec['name'],$keyword)!==false)){
+    else if (($type==='')&&(strpos($rec['name'],$keyword)!==false)){
         $disp=1;
     }
     else if(($keyword==='')&&((strpos($type2,$type)!==false)&&(strpos($size2,$size)!==false))){
@@ -124,32 +124,6 @@ while(true)
         print '</a>';
         print '<br />';
     }
-}
-?>
-
-<?php
-
-$key='';
-if(isset($_POST['keyword'])){
- $key=$_POST['keyword'];
-}
-if($key!==''){
- print $key.'が含まれる商品';
-}
-
-
-while(true)
-{
-	$rec=$stmt->fetch(PDO::FETCH_ASSOC);
-	if($rec==false)
-	{
-		break;
-	}
-	print '<a href="shop_product.php?procode='.$rec['code'].'">';
-	print $rec['name'].'---';
-	print $rec['price'].'円';
-	print '</a>';
-	print '<br />';
 }
 
 print '<br />';
