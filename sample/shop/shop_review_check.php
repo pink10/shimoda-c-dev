@@ -8,10 +8,14 @@
 <?php
 
 require_once('../common/common.php');
+
 $post=sanitize($_POST);
+
 $review=$post['review'];
 $pro_code=$post['code'];
+
 $okflg=true;
+
 if($review=='')
 {
     print '商品レビューが入力されていません。<br /><br />';

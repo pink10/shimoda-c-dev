@@ -47,19 +47,12 @@ $rec=$stmt->fetch(PDO::FETCH_ASSOC);
 $pro_name=$rec['name'];
 $pro_price=$rec['price'];
 $pro_gazou_name=$rec['gazou'];
-$pro_info=$rec['info'];
-//在庫情報
-$sql='SELECT stock FROME dat_stock WHERE code_product=?';
-$stmt2=$dbh->prepare($sql);
-$data2[]=$pro_code;
-$stmt2->execute($data2);
-$rec=$stmt2->fetch(PDO::FETCH_ASSOC);
-$pro_stock=$rec['stock'];
+
 //商品レビュー
-$sql='SELECT review FROME dat_review WHERE code_product=?';
+$sql='SELECT review FROM dat_review WHERE code_product=?';
 $stmt3=$dbh->prepare($sql);
 $data3[]=$pro_code;
-$stmt3->execute($data2);
+$stmt3->execute($data3);
 
 $dbh=null;
 
@@ -93,12 +86,6 @@ catch(Exception $e)
 価格<br />
 <?php print $pro_price; ?>円
 <br />
-商品説明<br />
-<?php print $pro_info; ?>
-<br />
-在庫数<br />
-<?php print $pro_stock; ?>
-<br />
 <?php print $disp_gazou; ?>
 <br />
 <br />
@@ -107,12 +94,12 @@ catch(Exception $e)
 </form>
 <br />
 商品レビュー--------------------<br />
-<frome method="post" action="shop_review_check.php"
+<form method="post" action="shop_review_check.php">
 <br />
 商品レビューを入力してください。<br />
 <input type="text" name="review" style="width:500px"><br />
 <input type="hidden" name="code" value="<?php echo $pro_code;?>">
-<input type="submit" value="OK"
+<input type="submit" value="OK">
 </form>
 <?php
 while (true)
