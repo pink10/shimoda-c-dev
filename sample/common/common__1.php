@@ -100,25 +100,4 @@ function pulldown_day()
 	print '</select>';
 }
 
-function pulldown_type()
-{
-        print '<select name="type">';
-	print '<option value="skirt">skirt</option>';
-	print '<option value="pants">pants</option>';
-	print '<option value="T-shirt">T-shirt</option>';
-	print '</select>';
-
-}
-
-function pulldown_size()
-{
-        print '<select name="size">';
-	print '<option value="S">S</option>';
-	print '<option value="M">M</option>';
-	print '<option value="L">L</option>';
-	print '<option value="XL">XL</option>';
-	print '</select>';
-}
-        
-
 ?>
