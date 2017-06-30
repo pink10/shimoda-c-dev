@@ -41,7 +41,6 @@ function pulldown_year()
 	print '<option value="2014">2014</option>';
 	print '<option value="2015">2015</option>';
 	print '<option value="2016">2016</option>';
-	print '<option value="2017">2017</option>';
 	print '</select>';
 }
 
