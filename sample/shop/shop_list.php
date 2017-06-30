@@ -39,12 +39,13 @@ $dbh=new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 //商品データ
-$sql='SELECT code,name,price FROM mst_product WHERE 1';
+$sql='SELECT code,name,price,gazou FROM mst_product WHERE 1';
 $stmt1=$dbh->prepare($sql);
 $stmt1->execute();
 $p_code=array();
 $p_name=array();
 $p_price=array();
+$p_gazou=array();
 $p_sum=array();
 while(true)
 {
@@ -57,6 +58,7 @@ while(true)
  $p_name[]=$rec['name'];
  $p_price[]=$rec['price'];
  $p_sum[]=0;
+ $p_gazou[]=$rec['gazou'];
 }
 $pro_num=count($p_code);
 
@@ -99,42 +101,69 @@ arsort($p_sum);
 //売上1位
 $key=key($p_sum);
 print '注文数1位';
-print '</a>';
-print '<br />';
-$sql='SELECT name,price,gazou FROM mst_product WHERE code=?';
-$pro_gazou_name=$rec['gazou'];
-print'<br />';
-$disp_gazou='<img src="../product/gazou/'.$pro_gazou_name.'">';
-print'<?php print $disp_gazou; ?>';
-
 print '<a href="shop_product.php?procode='.$p_code[$key].'">';
+print '<br />';
+
+if($p_gazou[$key]=='')
+{
+	$disp_gazou='';
+}
+else
+{
+	$disp_gazou='<img src="../product/gazou/'.$p_gazou[$key].'">';
+}
+        print $disp_gazou;
+        print '</a>';
+        print '<br />';
 print $p_name[$key].'---';
 print $p_price[$key].'円';
 print ' 注文数'.$p_sum[$key].'個';
-
-print '</a>';
-print '<br />';
+print '<br /><br />';
 
 //売上2位
 next($p_sum);
 $key=key($p_sum);
 print '注文数2位';
 print '<a href="shop_product.php?procode='.$p_code[$key].'">';
+print '<br />';
+
+if($p_gazou[$key]=='')
+{
+	$disp_gazou='';
+}
+else
+{
+	$disp_gazou='<img src="../product/gazou/'.$p_gazou[$key].'">';
+}
+        print $disp_gazou;
+        print '</a>';
+        print '<br />';
 print $p_name[$key].'---';
 print $p_price[$key].'円';
 print ' 注文数'.$p_sum[$key].'個';
-print '</a>';
-print '<br />';
+print '<br /><br />';
 //売上3位
 next($p_sum);
 $key=key($p_sum);
 print '注文数3位';
 print '<a href="shop_product.php?procode='.$p_code[$key].'">';
+print '<br />';
+
+if($p_gazou[$key]=='')
+{
+	$disp_gazou='';
+}
+else
+{
+	$disp_gazou='<img src="../product/gazou/'.$p_gazou[$key].'">';
+}
+        print $disp_gazou;
+        print '</a>';
+        print '<br />';
 print $p_name[$key].'---';
 print $p_price[$key].'円';
 print ' 注文数'.$p_sum[$key].'個';
-print '</a>';
-print '<br />';
+print '<br /><br />';
 
 } catch (Exception $ex) {
  print 'ただいま障害により大変ご迷惑をお掛けしております。';
