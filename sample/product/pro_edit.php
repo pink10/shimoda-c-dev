@@ -36,7 +36,7 @@ $password='';
 $dbh=new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$sql='SELECT name,price,gazou FROM mst_product WHERE code=?';
+$sql='SELECT name,price,info,gazou FROM mst_product WHERE code=?';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_code;
 $stmt->execute($data);
@@ -44,6 +44,7 @@ $stmt->execute($data);
 $rec=$stmt->fetch(PDO::FETCH_ASSOC);
 $pro_name=$rec['name'];
 $pro_price=$rec['price'];
+$pro_info=$rec['info'];
 $pro_gazou_name_old=$rec['gazou'];
 
 $dbh=null;
@@ -82,6 +83,8 @@ catch(Exception $e)
 <br />
 <?php print $disp_gazou; ?>
 <br />
+商品説明<br />
+<input type="text" name="info" style="width:200px" value="<?php print $pro_info; ?>"><br />
 画像を選んでください。<br />
 <input type="file" name="gazou" style="width:400px"><br />
 <br />

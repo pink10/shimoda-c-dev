@@ -217,8 +217,38 @@ if($type!==''){
 
 
 
+
+
+?>
+
+
+
+<form method="post" action="">
+キーワード<br />
+<input type="text" name="keyword" ><br />
+<br />
+<input type="submit" value="検索">
+</form>
+
+
+
+
+<?php
+
+$key='';
+if(isset($_POST['keyword'])){
+  $key=$_POST['keyword'];
+}
+if($key!==''){
+  print $key.'が含まれる商品';
+  print'<br/>';
+}
+
+
+
 while(true)
 {
+
     $rec=$stmt->fetch(PDO::FETCH_ASSOC);
         $type2=$rec['type'];
         $size2=$rec['size'];
@@ -245,6 +275,7 @@ while(true)
         print '</a>';
         print '<br />';
     }
+
 }
 
 print '<br />';
