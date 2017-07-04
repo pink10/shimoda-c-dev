@@ -3,17 +3,17 @@ session_start();
 session_regenerate_id(true);
 if(isset($_SESSION['member_login'])==false)
 {
-	print 'ようこそゲスト様　';
-	print '<a href="member_login.html">会員ログイン</a><br />';
-	print '<br />';
+print 'ようこそゲスト様';
+print '<a href="member_login.html">会員ログイン</a><br />';
+print '<br />';
 }
 else
 {
-	print 'ようこそ';
-	print $_SESSION['member_name'];
-	print ' 様　';
-	print '<a href="member_logout.php">ログアウト</a><br />';
-	print '<br />';
+ print 'ようこそ';
+ print $_SESSION['member_name'];
+ print ' 様';
+ print '<a href="member_logout.php">ログアウト</a><br />';
+ print '<br />';
 }
 ?>
 
@@ -36,13 +36,63 @@ $password='';
 $dbh=new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$sql='SELECT code,name,price FROM mst_product WHERE 1';
+$sql='SELECT code,name,price,type,size FROM mst_product WHERE 1';
 $stmt=$dbh->prepare($sql);
 $stmt->execute();
 
-$dbh=null;
+$dbh=null;    
 
-print '商品一覧<br /><br />';
+print '<br />商品一覧<br /><br />';
+
+
+
+require_once('../common/common.php');
+?>
+<form method="post" action="">
+キーワード<br />
+<input type="text" name="keyword" ><br />
+<br />
+<input type="submit" value="検索">
+</form>
+<br />
+    
+    
+キーワードを選んでください．<br />
+<form method="post"action="">
+種類
+<?php pulldown_type();?>
+サイズ
+<?php pulldown_size();?>
+<br />
+<input type="submit" value="絞り込み">
+</form>
+<br />
+
+
+<?php
+
+//フリーキーワード
+$keyword='';
+if (isset($_POST['keyword'])){
+     $keyword=$_POST['keyword'];
+}
+if($keyword!==''){
+    print $keyword.'が含まれる商品';
+    print '<br />';
+}
+//固定キーワード
+$type='';
+$siza='';
+if(isset($_POST['type'])){
+    $type=$_POST['type'];
+    $size=$_POST['size'];         
+}
+if($type!==''){
+    print $type.','.$size.',に一致する商品';
+    print '<br />';        
+}
+
+
 
 
 
@@ -75,20 +125,34 @@ if($key!==''){
 
 while(true)
 {
-	$rec=$stmt->fetch(PDO::FETCH_ASSOC);
-	if($rec==false)
-	{
-		break;
-	}
-	
-	if(($key==='')||(strpos($rec['name'],$key)!==false)){
-	
-	print '<a href="shop_product.php?procode='.$rec['code'].'">';
-	print $rec['name'].'---';
-	print $rec['price'].'円';
-	print '</a>';
-	print '<br />';
-	}
+
+    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+        $type2=$rec['type'];
+        $size2=$rec['size'];
+    if($rec==false)
+    {
+        break;
+    }
+        $disp=0;
+    //キーワードが空,または，キーワードが含まれるとき表示
+    if(($keyword==='')&&($type==='')){
+        $disp=1;
+    }
+    else if (($type==='')&&(strpos($rec['name'],$keyword)!==false)){
+        $disp=1;
+    }
+    else if(($keyword==='')&&((strpos($type2,$type)!==false)&&(strpos($size2,$size)!==false))){
+         $disp=1;
+    }
+    
+    if($disp===1){
+        print '<a href="shop_product.php?procode='.$rec['code'].'">';
+        print $rec['name'].'---';
+        print $rec['price'].'円';
+        print '</a>';
+        print '<br />';
+    }
+
 }
 
 print '<br />';
