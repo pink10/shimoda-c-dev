@@ -37,8 +37,8 @@ $user='root';
 $password='';
 $dbh=new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-//商品情報
-$sql='SELECT name,price,gazou FROM mst_product WHERE code=?';
+
+$sql='SELECT name,price,info,gazou FROM mst_product WHERE code=?';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_code;
 $stmt->execute($data);
@@ -46,6 +46,7 @@ $stmt->execute($data);
 $rec=$stmt->fetch(PDO::FETCH_ASSOC);
 $pro_name=$rec['name'];
 $pro_price=$rec['price'];
+$pro_info=$rec['info'];
 $pro_gazou_name=$rec['gazou'];
 
 //商品レビュー
@@ -85,6 +86,9 @@ catch(Exception $e)
 <br />
 価格<br />
 <?php print $pro_price; ?>円
+<br />
+商品説明<br />
+<?php print $pro_info; ?>
 <br />
 <?php print $disp_gazou; ?>
 <br />

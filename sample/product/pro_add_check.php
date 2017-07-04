@@ -30,6 +30,7 @@ require_once('../common/common.php');
 $post=sanitize($_POST);
 $pro_name=$post['name'];
 $pro_price=$post['price'];
+$pro_info=$post['info'];
 $pro_gazou=$_FILES['gazou'];
 
 if($pro_name=='')
@@ -54,6 +55,17 @@ else
 	print '円<br />';
 }
 
+if($pro_info=='')
+{
+	print '商品説明が入力されていません。<br />';
+}
+else
+{
+	print '商品説明:';
+	print $pro_info;
+	print '<br />';
+}
+
 if($pro_gazou['size']>0)
 {
 	if($pro_gazou['size']>1000000)
@@ -68,7 +80,7 @@ if($pro_gazou['size']>0)
 	}
 }
 
-if($pro_name=='' || preg_match('/^[0-9]+$/',$pro_price)==0 || $pro_gazou['size']>1000000)
+if($pro_name=='' || preg_match('/^[0-9]+$/',$pro_price)==0 || $pro_info=='' || $pro_gazou['size']>1000000)
 {
 	print '<form>';
 	print '<input type="button" onclick="history.back()" value="戻る">';
@@ -80,6 +92,7 @@ else
 	print '<form method="post" action="pro_add_done.php">';
 	print '<input type="hidden" name="name" value="'.$pro_name.'">';
 	print '<input type="hidden" name="price" value="'.$pro_price.'">';
+        print '<input type="hidden" name="info" value="'.$pro_info.'">';
 	print '<input type="hidden" name="gazou_name" value="'.$pro_gazou['name'] .'">';
 	print '<br />';
 	print '<input type="button" onclick="history.back()" value="戻る">';
