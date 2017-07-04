@@ -27,16 +27,15 @@ else
 
 <?php
 
-print '人気商品--------------------<br /><br />';
+try
+{
 
-try{
-
-//DB接続
 $dsn='mysql:dbname=shop;host=localhost;charset=utf8';
 $user='root';
 $password='';
 $dbh=new PDO($dsn,$user,$password);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
 
 //商品データ
 $sql='SELECT code,name,price,gazou FROM mst_product WHERE 1';
@@ -94,9 +93,12 @@ for ($i = 0; $i < $sales_num; $i++){
   }
  }
 }
+=======
+$sql='SELECT code,name,price,type,size FROM mst_product WHERE 1';
+$stmt=$dbh->prepare($sql);
+$stmt->execute();
 
-//ソート
-arsort($p_sum);
+$dbh=null;    
 
 //売上1位
 $key=key($p_sum);
@@ -165,44 +167,84 @@ print $p_price[$key].'円';
 print ' 注文数'.$p_sum[$key].'個';
 print '<br /><br />';
 
-} catch (Exception $ex) {
- print 'ただいま障害により大変ご迷惑をお掛けしております。';
- exit();
-}
 
+
+require_once('../common/common.php');
 ?>
+<form method="post" action="">
+キーワード<br />
+<input type="text" name="keyword" ><br />
+<br />
+<input type="submit" value="検索">
+</form>
+<br />
+    
+    
+キーワードを選んでください．<br />
+<form method="post"action="">
+種類
+<?php pulldown_type();?>
+サイズ
+<?php pulldown_size();?>
+<br />
+<input type="submit" value="絞り込み">
+</form>
+<br />
+
 
 <?php
 
-try
-{
+//フリーキーワード
+$keyword='';
+if (isset($_POST['keyword'])){
+     $keyword=$_POST['keyword'];
+}
+if($keyword!==''){
+    print $keyword.'が含まれる商品';
+    print '<br />';
+}
+//固定キーワード
+$type='';
+$siza='';
+if(isset($_POST['type'])){
+    $type=$_POST['type'];
+    $size=$_POST['size'];         
+}
+if($type!==''){
+    print $type.','.$size.',に一致する商品';
+    print '<br />';        
+}
 
-$dsn='mysql:dbname=shop;host=localhost;charset=utf8';
-$user='root';
-$password='';
-$dbh=new PDO($dsn,$user,$password);
-$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$sql='SELECT code,name,price FROM mst_product WHERE 1';
-$stmt=$dbh->prepare($sql);
-$stmt->execute();
-
-$dbh=null;
-
-print '<br />商品一覧<br /><br />';
 
 while(true)
 {
-	$rec=$stmt->fetch(PDO::FETCH_ASSOC);
-	if($rec==false)
-	{
-		break;
-	}
-	print '<a href="shop_product.php?procode='.$rec['code'].'">';
-	print $rec['name'].'---';
-	print $rec['price'].'円';
-	print '</a>';
-	print '<br />';
+    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+        $type2=$rec['type'];
+        $size2=$rec['size'];
+    if($rec==false)
+    {
+        break;
+    }
+        $disp=0;
+    //キーワードが空,または，キーワードが含まれるとき表示
+    if(($keyword==='')&&($type==='')){
+        $disp=1;
+    }
+    else if (($type==='')&&(strpos($rec['name'],$keyword)!==false)){
+        $disp=1;
+    }
+    else if(($keyword==='')&&((strpos($type2,$type)!==false)&&(strpos($size2,$size)!==false))){
+         $disp=1;
+    }
+    
+    if($disp===1){
+        print '<a href="shop_product.php?procode='.$rec['code'].'">';
+        print $rec['name'].'---';
+        print $rec['price'].'円';
+        print '</a>';
+        print '<br />';
+    }
 }
 
 print '<br />';
