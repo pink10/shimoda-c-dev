@@ -49,6 +49,12 @@ $pro_price=$rec['price'];
 $pro_info=$rec['info'];
 $pro_gazou_name=$rec['gazou'];
 
+//商品レビュー
+$sql='SELECT review FROM dat_review WHERE code_product=?';
+$stmt3=$dbh->prepare($sql);
+$data3[]=$pro_code;
+$stmt3->execute($data3);
+
 $dbh=null;
 
 if($pro_gazou_name=='')
@@ -90,6 +96,26 @@ catch(Exception $e)
 <form>
 <input type="button" onclick="history.back()" value="戻る">
 </form>
-
+<br />
+商品レビュー--------------------<br />
+<form method="post" action="shop_review_check.php">
+<br />
+商品レビューを入力してください。<br />
+<input type="text" name="review" style="width:500px"><br />
+<input type="hidden" name="code" value="<?php echo $pro_code;?>">
+<input type="submit" value="OK">
+</form>
+<?php
+while (true)
+{
+    $rec=$stmt3->fetch(PDO::FETCH_ASSOC);
+    if($rec==false)
+    {
+        break;
+    }
+    print $rec['review'];
+        print '<br />';
+}        
+?>    
 </body>
 </html>
