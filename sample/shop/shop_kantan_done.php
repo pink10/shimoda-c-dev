@@ -89,9 +89,9 @@ for($i=0;$i<$max;$i++)
 	$honbun.=$shokei."円\n";
 }
 
-//$sql='LOCK TABLES dat_sales,dat_sales_product WRITE';
-//$stmt=$dbh->prepare($sql);
-//$stmt->execute();
+$sql='LOCK TABLES dat_sales,dat_sales_product WRITE';
+$stmt=$dbh->prepare($sql);
+$stmt->execute();
 
 $lastmembercode=$_SESSION['member_code'];
 
@@ -125,9 +125,9 @@ for($i=0;$i<$max;$i++)
 	$stmt->execute($data);
 }
 
-//$sql='UNLOCK TABLES';
-//$stmt=$dbh->prepare($sql);
-//$stmt->execute();
+$sql='UNLOCK TABLES';
+$stmt=$dbh->prepare($sql);
+$stmt->execute();
 
 $dbh=null;
 
@@ -154,14 +154,14 @@ $header='From:info@suzukiya.co.jp';
 $honbun=html_entity_decode($honbun,ENT_QUOTES,'UTF-8');
 mb_language('Japanese');
 mb_internal_encoding('UTF-8');
-//mb_send_mail($email,$title,$honbun,$header);
+mb_send_mail($email,$title,$honbun,$header);
 
 $title='お客様からご注文がありました。';
 $header='From:'.$email;
 $honbun=html_entity_decode($honbun,ENT_QUOTES,'UTF-8');
 mb_language('Japanese');
 mb_internal_encoding('UTF-8');
-//mb_send_mail('info@rokumarunouen.co.jp',$title,$honbun,$header);
+mb_send_mail('info@rokumarunouen.co.jp',$title,$honbun,$header);
 
 }
 catch (Exception $e)
