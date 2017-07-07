@@ -99,6 +99,15 @@ function pulldown_day()
 	print '</select>';
 }
 
+<<<<<<< HEAD
+?>
+
+<?php
+//DEBUG処理の切り替え     本番運用時にはFALSEに変更すること
+define('DEBUG', TRUE);  //デバッグ時
+//define('DEBUG', FALSE); //本番運用時
+?>
+=======
 function pulldown_type()
 {
         print '<select name="type">';
@@ -121,3 +130,4 @@ function pulldown_size()
         
 
 ?>
+>>>>>>> 0c9f330d7f8aa4f50f4a4862d389651de17e297b

@@ -18,13 +18,30 @@ $staff_pass=$post['pass'];
 
 $staff_pass=md5($staff_pass);
 
+<<<<<<< HEAD
+require_once('../common/common.php');
+if (DEBUG) {
+$dsn='mysql:dbname=shop;host=localhost;charset=utf8';
+$user='root';
+$password='';
+$dbh=new PDO($dsn,$user,$password);
+$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+}
+else{
+=======
+>>>>>>> 0c9f330d7f8aa4f50f4a4862d389651de17e297b
 $dbServer = '127.0.0.1';
 $dbUser = $_SERVER['MYSQL_USER'];
 $dbPass = $_SERVER['MYSQL_PASSWORD'];
 $dbName = $_SERVER['MYSQL_DB'];
 $dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
 $dbh = new PDO($dsn, $dbUser, $dbPass);
+<<<<<<< HEAD
+}
+
+=======
 //$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+>>>>>>> 0c9f330d7f8aa4f50f4a4862d389651de17e297b
 
 $sql='SELECT name FROM mst_staff WHERE code=? AND password=?';
 $stmt=$dbh->prepare($sql);
