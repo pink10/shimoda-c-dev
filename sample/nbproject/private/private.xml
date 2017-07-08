@@ -3,43 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_add_check.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_form.html</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_list.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_edit.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_disp.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_add_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_edit_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_add.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_edit_check.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/clear_cart.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_add_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/member_login.html</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_product.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_kantan_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_edit_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_add_check.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_list.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/order/order_download_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_form_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_disp.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/member_logout.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_list.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_edit.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_list%20-%20org.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_add.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff_login/staff_login_check.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_ng.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_cartlook.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_cartin.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/order/order_download.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_form_check.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_delete.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_kantan_check.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/staff/staff_delete_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/shop/shop_list_.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_delete_done.php</file>
-            <file>file:/C:/Users/mina/Documents/GitHub/shimoda-c-dev/sample/product/pro_delete.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/staff_login/staff_logout.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/common/common.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/shop/shop_product.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/staff_login/staff_login_check.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/staff_login/staff_top.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/product/pro_add_done.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/product/pro_list.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/shop/shop_list.php</file>
+            <file>file:/C:/Users/智也/Documents/GitHub/shimoda-c-dev/sample/staff_login/staff_login.html</file>
         </group>
     </open-files>
 </project-private>

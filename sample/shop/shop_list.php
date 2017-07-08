@@ -98,14 +98,13 @@ $dbh=null;
 
 //集計
 for ($i = 0; $i < $sales_num; $i++){
- for ($j = 0; $j < $pro_num; $j++){
-    if($s_pro_code[$i]===$p_code[$j]){
-    $p_sum[$j]=$p_sum[$j]+$s_quantity[$i];
-    break;
-  }
- }
+    for ($j = 0; $j < $pro_num; $j++){
+            if($s_pro_code[$i]===$p_code[$j]){
+                $p_sum[$j]=$p_sum[$j]+$s_quantity[$i];
+            }
+    }
 }
-=======
+
 $sql='SELECT code,name,price,type,size FROM mst_product WHERE 1';
 $stmt=$dbh->prepare($sql);
 $stmt->execute();
