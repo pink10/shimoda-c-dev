@@ -105,9 +105,16 @@ catch(Exception $e)
 <?php print $disp_gazou; ?>
 <br />
 <br />
+
+<!--
 <form>
 <input type="button" onclick="history.back()" value="戻る">
 </form>
+-->
+<form action="shop_list.php">
+<input type="submit" value="戻る">
+</form>
+
 <br />
 商品レビュー--------------------<br />
 <form method="post" action="shop_review_check.php">
