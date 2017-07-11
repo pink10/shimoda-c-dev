@@ -37,6 +37,8 @@ $pro_price=$post['price'];
 $pro_info=$post['info'];
 $pro_gazou_name_old=$_POST['gazou_name_old'];
 $pro_gazou_name=$_POST['gazou_name'];
+$pro_type=$post['type'];
+$pro_size=$post['size'];
 
 require_once('../common/common.php');
 if (DEBUG) {
@@ -56,12 +58,14 @@ $dbh = new PDO($dsn, $dbUser, $dbPass);
 }
 
 
-$sql='UPDATE mst_product SET name=?,price=?,info=?,gazou=? WHERE code=?';
+$sql='UPDATE mst_product SET name=?,price=?,info=?,gazou=?,type=?,size=? WHERE code=?';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_name;
 $data[]=$pro_price;
 $data[]=$pro_info;
 $data[]=$pro_gazou_name;
+$data[]=$pro_type;
+$data[]=$pro_size;
 $data[]=$pro_code;
 $stmt->execute($data);
 

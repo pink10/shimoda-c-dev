@@ -1,6 +1,6 @@
 <?php
-//DEBUG処理の切り替え     本番運用時にはFALSEに変更すること
-define('DEBUG', TRUE);//デバッグ時
+//DEBUG処理の切り替え     本番運用時にはFALSEに変更すること
+define('DEBUG', TRUE);  //デバッグ時
 //define('DEBUG', FALSE); //本番運用時
 ?>
 
@@ -47,6 +47,7 @@ function pulldown_year()
 	print '<option value="2014">2014</option>';
 	print '<option value="2015">2015</option>';
 	print '<option value="2016">2016</option>';
+	print '<option value="2017">2017</option>';
 	print '</select>';
 }
 
@@ -112,7 +113,6 @@ function pulldown_type()
 	print '<option value="pants">pants</option>';
 	print '<option value="T-shirt">T-shirt</option>';
 	print '</select>';
-
 }
 
 function pulldown_size()
@@ -124,7 +124,5 @@ function pulldown_size()
 	print '<option value="XL">XL</option>';
 	print '</select>';
 }
-        
 
 ?>
-

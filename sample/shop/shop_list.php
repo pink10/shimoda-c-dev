@@ -26,11 +26,12 @@ else
 <body>
 
 <?php
-
-try
-{
-
 require_once('../common/common.php');
+
+try{
+
+//DB接続
+
 if (DEBUG) {
 $dsn='mysql:dbname=shop;host=localhost;charset=utf8';
 $user='root';
@@ -46,8 +47,6 @@ $dbName = $_SERVER['MYSQL_DB'];
 $dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
 $dbh = new PDO($dsn, $dbUser, $dbPass);
 }
-
-
 
 //商品データ
 $sql='SELECT code,name,price,gazou FROM mst_product WHERE 1';
@@ -70,6 +69,7 @@ while(true)
  $p_price[]=$rec['price'];
  $p_sum[]=0;
  $p_gazou[]=$rec['gazou'];
+
 }
 $pro_num=count($p_code);
 
@@ -98,18 +98,15 @@ $dbh=null;
 
 //集計
 for ($i = 0; $i < $sales_num; $i++){
-    for ($j = 0; $j < $pro_num; $j++){
-            if($s_pro_code[$i]===$p_code[$j]){
-                $p_sum[$j]=$p_sum[$j]+$s_quantity[$i];
-            }
-    }
+ for ($j = 0; $j < $pro_num; $j++){
+    if($s_pro_code[$i]===$p_code[$j]){
+        $p_sum[$j]=$p_sum[$j]+$s_quantity[$i];
+  }
+ }
 }
 
-$sql='SELECT code,name,price,type,size FROM mst_product WHERE 1';
-$stmt=$dbh->prepare($sql);
-$stmt->execute();
-
-$dbh=null;    
+//ソート
+arsort($p_sum);
 
 //売上1位
 $key=key($p_sum);
@@ -178,10 +175,13 @@ print $p_price[$key].'円';
 print ' 注文数'.$p_sum[$key].'個';
 print '<br /><br />';
 
+} catch (Exception $ex) {
+ print 'ただいま障害により大変ご迷惑をお掛けしております。';
+ exit();
+}
 
-
-require_once('../common/common.php');
 ?>
+    
 <form method="post" action="">
 キーワード<br />
 <input type="text" name="keyword" ><br />
@@ -189,7 +189,6 @@ require_once('../common/common.php');
 <input type="submit" value="検索">
 </form>
 <br />
-    
     
 キーワードを選んでください．<br />
 <form method="post"action="">
@@ -202,8 +201,31 @@ require_once('../common/common.php');
 </form>
 <br />
 
-
 <?php
+
+try
+{
+if (DEBUG) 
+{
+$dsn='mysql:dbname=shop;host=localhost;charset=utf8';
+$user='root';
+$password='';
+$dbh=new PDO($dsn,$user,$password);
+$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+}
+else{
+$dbServer = '127.0.0.1';
+$dbUser = $_SERVER['MYSQL_USER'];
+$dbPass = $_SERVER['MYSQL_PASSWORD'];
+$dbName = $_SERVER['MYSQL_DB'];
+$dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
+$dbh = new PDO($dsn, $dbUser, $dbPass);
+}
+$sql='SELECT code,name,price,type,size FROM mst_product WHERE 1';
+$stmt=$dbh->prepare($sql);
+$stmt->execute();
+$dbh=null;
+print '商品一覧<br /><br />';
 
 //フリーキーワード
 $keyword='';
@@ -226,40 +248,8 @@ if($type!==''){
     print '<br />';        
 }
 
-
-
-
-
-?>
-
-
-
-<form method="post" action="">
-キーワード<br />
-<input type="text" name="keyword" ><br />
-<br />
-<input type="submit" value="検索">
-</form>
-
-
-
-
-<?php
-
-$key='';
-if(isset($_POST['keyword'])){
-  $key=$_POST['keyword'];
-}
-if($key!==''){
-  print $key.'が含まれる商品';
-  print'<br/>';
-}
-
-
-
 while(true)
 {
-
     $rec=$stmt->fetch(PDO::FETCH_ASSOC);
         $type2=$rec['type'];
         $size2=$rec['size'];

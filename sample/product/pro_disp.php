@@ -48,7 +48,7 @@ $dbh = new PDO($dsn, $dbUser, $dbPass);
 }
 
 
-$sql='SELECT name,price,info,gazou FROM mst_product WHERE code=?';
+$sql='SELECT name,price,info,gazou,type,size FROM mst_product WHERE code=?';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_code;
 $stmt->execute($data);
@@ -58,6 +58,8 @@ $pro_name=$rec['name'];
 $pro_price=$rec['price'];
 $pro_info=$rec['info'];
 $pro_gazou_name=$rec['gazou'];
+$pro_type=$rec['type'];
+$pro_size=$rec['size'];
 
 $dbh=null;
 
@@ -92,6 +94,12 @@ catch(Exception $e)
 <br />
 商品説明<br />
 <?php print $pro_info; ?>
+<br />
+タイプ<br />
+<?php print $pro_type; ?>
+<br />
+サイズ<br />
+<?php print $pro_size; ?><br />
 <br />
 <?php print $disp_gazou; ?>
 <br />

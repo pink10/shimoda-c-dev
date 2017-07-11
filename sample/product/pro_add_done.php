@@ -35,6 +35,8 @@ $pro_name=$post['name'];
 $pro_price=$post['price'];
 $pro_info=$post['info'];
 $pro_gazou_name=$post['gazou_name'];
+$pro_type=$post['type'];
+$pro_size=$post['size'];
 
 require_once('../common/common.php');
 if (DEBUG) {
@@ -54,12 +56,14 @@ $dbh = new PDO($dsn, $dbUser, $dbPass);
 }
 
 
-$sql='INSERT INTO mst_product(name,price,info,gazou) VALUES (?,?,?,?)';
+$sql='INSERT INTO mst_product(name,price,info,gazou,type,size) VALUES (?,?,?,?,?,?)';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_name;
 $data[]=$pro_price;
 $data[]=$pro_info;
 $data[]=$pro_gazou_name;
+$data[]=$pro_type;
+$data[]=$pro_size;
 $stmt->execute($data);
 
 $dbh=null;

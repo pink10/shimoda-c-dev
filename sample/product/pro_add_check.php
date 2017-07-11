@@ -32,6 +32,8 @@ $pro_name=$post['name'];
 $pro_price=$post['price'];
 $pro_info=$post['info'];
 $pro_gazou=$_FILES['gazou'];
+$pro_type=$post['type'];
+$pro_size=$post['size'];
 
 if($pro_name=='')
 {
@@ -80,7 +82,28 @@ if($pro_gazou['size']>0)
 	}
 }
 
-if($pro_name=='' || preg_match('/^[0-9]+$/',$pro_price)==0 || $pro_info=='' || $pro_gazou['size']>1000000)
+if($pro_type=='')
+{
+	print 'タイプが入力されていません。<br />';
+}
+else
+{
+	print 'タイプ:';
+	print $pro_type;
+	print '<br />';
+}
+if($pro_size=='')
+{
+	print 'サイズが入力されていません。<br />';
+}
+else
+{
+	print 'サイズ:';
+	print $pro_size;
+	print '<br />';
+}
+
+if($pro_name=='' || preg_match('/^[0-9]+$/',$pro_price)==0 || $pro_info=='' || $pro_gazou['size']>1000000 ||$pro_type==''||$pro_size=='')
 {
 	print '<form>';
 	print '<input type="button" onclick="history.back()" value="戻る">';
@@ -94,7 +117,9 @@ else
 	print '<input type="hidden" name="price" value="'.$pro_price.'">';
         print '<input type="hidden" name="info" value="'.$pro_info.'">';
 	print '<input type="hidden" name="gazou_name" value="'.$pro_gazou['name'] .'">';
-	print '<br />';
+	print '<input type="hidden" name="type" value="'.$pro_type.'">';
+	print '<input type="hidden" name="size" value="'.$pro_size.'">';
+        print '<br />';
 	print '<input type="button" onclick="history.back()" value="戻る">';
 	print '<input type="submit" value="ＯＫ">';
 	print '</form>';

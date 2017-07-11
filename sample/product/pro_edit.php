@@ -48,7 +48,7 @@ $dbh = new PDO($dsn, $dbUser, $dbPass);
 }
 
 
-$sql='SELECT name,price,info,gazou FROM mst_product WHERE code=?';
+$sql='SELECT name,price,info,gazou,type,size FROM mst_product WHERE code=?';
 $stmt=$dbh->prepare($sql);
 $data[]=$pro_code;
 $stmt->execute($data);
@@ -58,6 +58,8 @@ $pro_name=$rec['name'];
 $pro_price=$rec['price'];
 $pro_info=$rec['info'];
 $pro_gazou_name_old=$rec['gazou'];
+$pro_type=$rec['type'];
+$pro_size=$rec['size'];
 
 $dbh=null;
 
@@ -100,6 +102,10 @@ catch(Exception $e)
 画像を選んでください。<br />
 <input type="file" name="gazou" style="width:400px"><br />
 <br />
+タイプ（skirt,pants,T-shirt）<br />
+<input type="text" name="type" style="width:200px" value="<?php print $pro_type; ?>"><br />
+サイズ（S,M,L,XL）<br />
+<input type="text" name="size" style="width:200px" value="<?php print $pro_size; ?>"><br />
 <input type="button" onclick="history.back()" value="戻る">
 <input type="submit" value="ＯＫ">
 </form>

@@ -1,4 +1,3 @@
-<?php ob_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,3 +64,4 @@ catch(Exception $e)
 ?>
 </body>
 </html>
+

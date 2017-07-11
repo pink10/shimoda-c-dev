@@ -34,6 +34,10 @@ else
 <input type="text" name="info" style="width:500px"><br />
 画像を選んでください。<br />
 <input type="file" name="gazou" style="width:400px"><br />
+タイプ（skirt,pants,T-shirt）を入力してください。<br />
+<input type="text" name="type" style="width:200px"><br />
+サイズ（S,M,L,XL）を入力してください。<br />
+<input type="text" name="size" style="width:200px"><br />
 <br />
 <input type="button" onclick="history.back()" value="戻る">
 <input type="submit" value="ＯＫ">
