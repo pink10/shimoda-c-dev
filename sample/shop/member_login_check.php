@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +48,7 @@ else
 	$_SESSION['member_login']=1;
 	$_SESSION['member_code']=$rec['code'];
 	$_SESSION['member_name']=$rec['name'];
+        ob_end_clean();
 	header('Location:shop_list.php');
 	exit();
 }
